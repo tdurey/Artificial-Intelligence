@@ -1,0 +1,15 @@
+(defun myreplace (old new target)
+    (if (null target)
+        nil
+        (if (listp target)
+            (if (listp (car target))
+                (cons (car (list (myreplace old new (car target)))) (myreplace old new (cdr target)))
+                (if (equal old (car target))
+                    (cons new (myreplace old new (cdr target)))
+                    (cons (car target) (myreplace old new (cdr target)))
+                )
+            )
+            new
+        )
+    )
+)
